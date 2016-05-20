@@ -1,0 +1,17 @@
+<FindBugsFilter>
+    <Match>
+        <Or>
+            <Bug code="CD"/>
+            <Bug code="PRMC"/>
+            <Bug code="IMC"/>
+            <Bug code="OPM"/>
+            <Bug code="UrF"/>
+            <Bug code="UwF"/>
+            <Bug code="MRC"/>
+            <Bug code="UP"/>
+            <Bug code="UTAO"/>
+            <Bug code="EXS"/>
+            <Bug code="NAB"/>
+        </Or>
+    </Match>
+</FindBugsFilter>

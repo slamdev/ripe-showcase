@@ -43,6 +43,5 @@ task gulpAssemble(type: GulpTask, dependsOn: installGulp) {
 
 installGulp.dependsOn npmPackages
 
-// TODO: enable when start working on client side
-//assemble.dependsOn gulpAssemble
-//clean.dependsOn gulpClean
+assemble.dependsOn gulpAssemble
+clean.dependsOn gulpClean

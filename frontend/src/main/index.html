@@ -1,15 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://www.ripe.net/favicon.ico">
+
+    <title>Regional Internet Registry service</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
     <!-- inject:css -->
     <!-- endinject -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
+
 <body>
-<button id="send">Send</button>
-<textarea id="result"></textarea>
+
+<div class="container">
+    <div class="header clearfix">
+        <h3 class="text-muted">Regional Internet Registry service</h3>
+    </div>
+
+    <div class="row marketing">
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Company Name</th>
+                <th>Website</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>IN PROGRESS</td>
+                <td>4/4</td>
+                <td>tedbeem</td>
+                <td>
+                    <button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>IN PROGRESS</td>
+                <td>4/4</td>
+                <td>tedbeem</td>
+                <td>
+                    <button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                </td>
+            </tr>
+        </table>
+        <button class="btn btn-success pull-right" data-toggle="modal" data-target="#add">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+    </div>
+
+    <footer class="footer"></footer>
+
+    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add new</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="inputCompany">Company Name</label>
+                            <input type="text" class="form-control" id="inputCompany"
+                                   placeholder="Company Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputWebsite">Website</label>
+                            <input type="text" class="form-control" id="inputWebsite"
+                                   placeholder="Website">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail1">Email</label>
+                            <input type="email" class="form-control" id="inputEmail1" placeholder="Email">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="save" type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
 <!-- inject:js -->
 <!-- endinject -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,14 +1,18 @@
 "use strict";
 
-$(document).ready(function () {
+$(function() {
 
-    var endpointUrl = "/api/sample";
+    var endpointUrl = "/api/isp";
 
-    $("#send").click(function () {
+    $("#save").click(function () {
         $.ajax({
             url: endpointUrl,
             type: "GET"
         }).done(renderSuccessUpload).fail(renderError);
+    });
+
+    $('#add').on('shown.bs.modal', function () {
+        $('#inputCompany').focus()
     });
 
     function renderSuccessUpload(result) {

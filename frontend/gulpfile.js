@@ -2,14 +2,14 @@
 
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
+var runSequence = require('run-sequence');
 
 var src = './src/main';
 var build = './build/public';
 
 gulp.task('index', function () {
     var target = gulp.src(src + '/index.html');
-    var order = ['jquery.js', '**'];
-    var sources = gulp.src([build + '/**/*.js', build + '/**/*.css']).pipe(plugins.order(order));
+    var sources = gulp.src([build + '/**/*.js', build + '/**/*.css']);
     var injectOptions = {
         addRootSlash: false,
         ignorePath: 'build/public'
@@ -18,12 +18,12 @@ gulp.task('index', function () {
 });
 
 gulp.task('js', function () {
-    var sources = gulp.src(['./node_modules/jquery/dist/jquery.js', src + '/**/*.js']);
+    var sources = gulp.src(src + '/**/*.js');
     return sources.pipe(gulp.dest(build));
 });
 
 gulp.task('css', function () {
-    var sources = gulp.src(src + '/**/*.css', {read: false});
+    var sources = gulp.src(src + '/**/*.css');
     return sources.pipe(gulp.dest(build));
 });
 
@@ -32,7 +32,5 @@ gulp.task('clean', function () {
 });
 
 gulp.task('default', ['clean'], function () {
-    gulp.start('css');
-    gulp.start('js');
-    gulp.start('index');
+    runSequence(['css', 'js'], 'index');
 });

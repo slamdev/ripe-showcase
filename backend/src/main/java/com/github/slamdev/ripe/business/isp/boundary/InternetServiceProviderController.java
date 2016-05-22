@@ -2,9 +2,7 @@ package com.github.slamdev.ripe.business.isp.boundary;
 
 import com.github.slamdev.ripe.business.isp.control.InternetServiceProviderResourceProvider;
 import com.github.slamdev.ripe.business.isp.entity.InternetServiceProvider;
-import com.github.slamdev.ripe.business.isp.entity.InternetServiceProviderCreationEvent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
@@ -31,13 +29,9 @@ public class InternetServiceProviderController {
     @Autowired
     private InternetServiceProviderRepository repository;
 
-    @Autowired
-    private ApplicationEventPublisher eventPublisher;
-
     @RequestMapping(method = POST)
     public ResponseEntity<Void> create(@Valid @RequestBody InternetServiceProvider internetServiceProvider) {
         repository.save(internetServiceProvider);
-        eventPublisher.publishEvent(new InternetServiceProviderCreationEvent(internetServiceProvider));
         Resource<InternetServiceProvider> resource = resourceProvider.toResource(internetServiceProvider);
         return new ResponseEntity<>(selfLocation(resource), CREATED);
     }

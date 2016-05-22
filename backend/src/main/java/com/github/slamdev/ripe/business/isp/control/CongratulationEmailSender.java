@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.EventListener;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -22,6 +23,7 @@ public class CongratulationEmailSender {
     private SpringTemplateEngine templateEngine;
 
     @EventListener
+    @Async
     public void sendCongratulationEmail(InternetServiceProviderCreationEvent event) {
         InternetServiceProvider isp = event.getInternetServiceProvider();
         SimpleMailMessage email = new SimpleMailMessage();

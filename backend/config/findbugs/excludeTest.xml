@@ -14,6 +14,8 @@
             <Bug code="NAB"/>
             <Bug code="JPAI"/>
             <Bug code="USBR"/>
+            <Bug code="CFS"/>
+            <Bug code="FCBL"/>
         </Or>
     </Match>
 </FindBugsFilter>

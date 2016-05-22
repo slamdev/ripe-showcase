@@ -26,6 +26,7 @@
         <exclude name="OnlyOneReturn"/>
         <exclude name="UseObjectForClearerAPI"/>
         <exclude name="CallSuperInConstructor"/>
+        <exclude name="DataflowAnomalyAnalysis"/>
     </rule>
     <!--<rule ref="rulesets/java/coupling.xml"/>-->
     <rule ref="rulesets/java/design.xml">
@@ -73,5 +74,7 @@
         <exclude name="SignatureDeclareThrowsException"/>
     </rule>
     <rule ref="rulesets/java/unnecessary.xml"/>
-    <rule ref="rulesets/java/unusedcode.xml"/>
+    <rule ref="rulesets/java/unusedcode.xml">
+        <exclude name="UnusedPrivateField"/>
+    </rule>
 </ruleset>

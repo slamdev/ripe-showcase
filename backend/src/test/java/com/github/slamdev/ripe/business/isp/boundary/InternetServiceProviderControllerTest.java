@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
@@ -35,6 +36,9 @@ public class InternetServiceProviderControllerTest {
 
     @Mock
     private InternetServiceProviderRepository repository;
+
+    @Mock
+    private ApplicationEventPublisher eventPublisher;
 
     @Test
     public void should_return_resource_location_after_creating() {

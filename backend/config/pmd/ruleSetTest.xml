@@ -7,7 +7,9 @@
     <rule ref="rulesets/java/basic.xml"/>
     <rule ref="rulesets/java/braces.xml"/>
     <rule ref="rulesets/java/clone.xml"/>
-    <rule ref="rulesets/java/codesize.xml"/>
+    <rule ref="rulesets/java/codesize.xml">
+        <exclude name="TooManyMethods"/>
+    </rule>
     <rule ref="rulesets/java/comments.xml">
         <exclude name="CommentRequired"/>
         <exclude name="CommentDefaultAccessModifier"/>
@@ -63,7 +65,9 @@
     <rule ref="rulesets/java/strictexception.xml">
         <exclude name="SignatureDeclareThrowsException"/>
     </rule>
-    <rule ref="rulesets/java/strings.xml"/>
+    <rule ref="rulesets/java/strings.xml">
+        <exclude name="AvoidDuplicateLiterals"/>
+    </rule>
     <rule ref="rulesets/java/sunsecure.xml"/>
     <rule ref="rulesets/java/typeresolution.xml">
         <exclude name="SignatureDeclareThrowsException"/>

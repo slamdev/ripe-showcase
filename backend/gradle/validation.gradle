@@ -49,5 +49,5 @@ tasks.withType(FindBugs) {
 }
 
 dependencies {
-    findbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:6.6.0'
+    findbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:6.6.1'
 }

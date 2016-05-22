@@ -2,22 +2,21 @@ package com.github.slamdev.ripe.business.isp.boundary;
 
 import com.github.slamdev.ripe.business.isp.control.InternetServiceProviderResourceProvider;
 import com.github.slamdev.ripe.business.isp.entity.InternetServiceProvider;
-import com.github.slamdev.ripe.business.isp.entity.InternetServiceProviderResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
 
-import java.util.Optional;
-import java.util.stream.Stream;
-
 import static java.net.URI.create;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.Matchers.containsInAnyOrder;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpStatus.CREATED;
@@ -40,20 +39,20 @@ public class InternetServiceProviderControllerTest {
     @Test
     public void should_return_resource_location_after_creating() {
         InternetServiceProvider isp = InternetServiceProvider.builder().build();
-        InternetServiceProviderResource resource = new InternetServiceProviderResource(isp);
+        Resource<InternetServiceProvider> resource = new Resource<>(isp);
         resource.add(Link.valueOf("<example.com>;rel=\"foo\"").withSelfRel());
         when(resourceProvider.toResource(isp)).thenReturn(resource);
         ResponseEntity<Void> response = controller.create(isp);
-        assertThat(response.getHeaders().getLocation(), equalTo(create("example.com")));
+        assertThat(response.getHeaders().getLocation(), is(create("example.com")));
     }
 
     @Test
     public void should_return_201_status_after_creating() {
         InternetServiceProvider isp = InternetServiceProvider.builder().build();
-        InternetServiceProviderResource resource = new InternetServiceProviderResource(isp);
+        Resource<InternetServiceProvider> resource = new Resource<>(isp);
         when(resourceProvider.toResource(isp)).thenReturn(resource);
         ResponseEntity<Void> response = controller.create(isp);
-        assertThat(response.getStatusCode(), equalTo(CREATED));
+        assertThat(response.getStatusCode(), is(CREATED));
     }
 
     @Test
@@ -66,7 +65,7 @@ public class InternetServiceProviderControllerTest {
     @Test
     public void should_return_isp_from_repository() {
         InternetServiceProvider isp = InternetServiceProvider.builder().build();
-        when(repository.findOne(ID)).thenReturn(Optional.of(isp));
+        when(repository.findOne(ID)).thenReturn(isp);
         controller.get(ID);
         verify(repository, times(1)).findOne(ID);
     }
@@ -74,15 +73,15 @@ public class InternetServiceProviderControllerTest {
     @Test
     public void should_return_resource_by_id() {
         InternetServiceProvider isp = InternetServiceProvider.builder().build();
-        when(repository.findOne(ID)).thenReturn(Optional.of(isp));
-        InternetServiceProviderResource resource = new InternetServiceProviderResource(isp);
+        when(repository.findOne(ID)).thenReturn(isp);
+        Resource<InternetServiceProvider> resource = new Resource<>(isp);
         when(resourceProvider.toResource(isp)).thenReturn(resource);
-        assertThat(controller.get(ID), equalTo(resource));
+        assertThat(controller.get(ID), is(resource));
     }
 
     @Test(expected = NotFoundException.class)
-    public void should_throw_error_if_isp_id_not_found() {
-        when(repository.findOne(ID)).thenReturn(Optional.empty());
+    public void should_throw_exception_if_isp_id_not_found() {
+        when(repository.findOne(ID)).thenReturn(null);
         controller.get(ID);
     }
 
@@ -90,11 +89,11 @@ public class InternetServiceProviderControllerTest {
     public void should_return_204_status_when_after_deleting_isp() {
         when(repository.exists(any())).thenReturn(true);
         ResponseEntity<Void> response = controller.delete(ID);
-        assertThat(response.getStatusCode(), equalTo(NO_CONTENT));
+        assertThat(response.getStatusCode(), is(NO_CONTENT));
     }
 
     @Test(expected = NotFoundException.class)
-    public void should_throw_error_if_isp_not_found() {
+    public void should_throw_exception_if_isp_not_found() {
         when(repository.exists(ID)).thenReturn(false);
         controller.delete(ID);
     }
@@ -108,7 +107,7 @@ public class InternetServiceProviderControllerTest {
 
     @Test
     public void should_query_repository_for_all_isp() {
-        when(repository.findAll()).thenReturn(Stream.empty());
+        when(repository.findAll()).thenReturn(emptyList());
         controller.getAll();
         verify(repository, times(1)).findAll();
     }
@@ -116,9 +115,18 @@ public class InternetServiceProviderControllerTest {
     @Test
     public void should_return_list_of_resources() {
         InternetServiceProvider isp = InternetServiceProvider.builder().build();
-        when(repository.findAll()).thenReturn(Stream.of(isp));
-        Resources<InternetServiceProviderResource> resources = controller.getAll();
-        assertThat(resources.getContent().size(), equalTo(1));
-        assertThat(resources.getContent(), containsInAnyOrder(new InternetServiceProviderResource(isp)));
+        when(repository.findAll()).thenReturn(singletonList(isp));
+        Resource<InternetServiceProvider> resource = new Resource<>(isp);
+        when(resourceProvider.toResourcesWrapper(singletonList(isp))).thenReturn(new Resources<>(singletonList(resource)));
+        Resources<Resource> resources = controller.getAll();
+        assertThat(resources.getContent(), contains(resource));
+    }
+
+    @Test
+    public void should_return_empty_list_if_no_isp_found() {
+        when(repository.findAll()).thenReturn(emptyList());
+        when(resourceProvider.toResourcesWrapper(emptyList())).thenReturn(new Resources<>(emptyList()));
+        Resources<Resource> resources = controller.getAll();
+        assertThat(resources.getContent().size(), is(0));
     }
 }

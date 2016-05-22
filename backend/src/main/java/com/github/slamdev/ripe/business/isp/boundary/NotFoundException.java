@@ -1,5 +1,12 @@
 package com.github.slamdev.ripe.business.isp.boundary;
 
+public class NotFoundException extends IllegalArgumentException {
 
-public class NotFoundException extends RuntimeException {
+    public NotFoundException() {
+        super();
+    }
+
+    public NotFoundException(String s) {
+        super(s);
+    }
 }

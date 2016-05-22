@@ -1,7 +1,6 @@
 package com.github.slamdev.ripe.business.isp.entity;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -13,20 +12,23 @@ import java.net.URI;
 
 @Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 @Entity
 public class InternetServiceProvider {
 
     @Id
     @GeneratedValue
-    private final Long id;
+    private Long id;
 
     @NotBlank
-    private final String companyName;
+    private String companyName;
 
     @NotNull
-    private final URI website;
+    private URI website;
 
     @NotBlank
     @Email
-    private final String email;
+    private String email;
 }

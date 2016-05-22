@@ -13,6 +13,8 @@
             <Bug code="UTAO"/>
             <Bug code="EXS"/>
             <Bug code="NAB"/>
+            <Bug code="JPAI"/>
+            <Bug code="USBR"/>
         </Or>
     </Match>
 </FindBugsFilter>

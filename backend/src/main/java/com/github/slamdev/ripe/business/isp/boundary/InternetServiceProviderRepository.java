@@ -1,20 +1,8 @@
 package com.github.slamdev.ripe.business.isp.boundary;
 
 import com.github.slamdev.ripe.business.isp.entity.InternetServiceProvider;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
-import java.util.stream.Stream;
-
-public interface InternetServiceProviderRepository extends Repository<InternetServiceProvider, Long> {
-
-    Optional<InternetServiceProvider> findOne(Long id);
-
-    InternetServiceProvider save(InternetServiceProvider entity);
-
-    void delete(Long id);
-
-    Stream<InternetServiceProvider> findAll();
-
-    boolean exists(Long id);
+public interface InternetServiceProviderRepository extends JpaRepository<InternetServiceProvider, Long> {
+    // Interface is implemented in runtime by Spring Data
 }

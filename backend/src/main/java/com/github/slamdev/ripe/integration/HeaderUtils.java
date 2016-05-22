@@ -7,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
 
+import static org.springframework.hateoas.Link.REL_SELF;
 import static org.springframework.http.HttpHeaders.CONTENT_DISPOSITION;
 
 public final class HeaderUtils {
@@ -28,7 +29,7 @@ public final class HeaderUtils {
     public static HttpHeaders selfLocation(ResourceSupport resource) {
         HttpHeaders headers = new HttpHeaders();
         if (resource != null) {
-            Link link = resource.getLink("self");
+            Link link = resource.getLink(REL_SELF);
             if (link != null) {
                 headers.setLocation(URI.create(link.getHref()));
             }

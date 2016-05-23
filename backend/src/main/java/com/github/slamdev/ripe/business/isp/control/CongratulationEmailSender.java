@@ -21,8 +21,10 @@ public class CongratulationEmailSender {
 
     @Value("${mail.congratulations.subject}")
     String subject;
+
     @Autowired
     private JavaMailSender mailSender;
+
     @Autowired
     private SpringTemplateEngine templateEngine;
 

@@ -5,12 +5,16 @@ import com.github.slamdev.ripe.business.isp.entity.InternetServiceProviderCreati
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.EventListener;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
+
+import javax.mail.MessagingException;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Component
 public class CongratulationEmailSender {
@@ -24,13 +28,13 @@ public class CongratulationEmailSender {
 
     @EventListener
     @Async
-    public void sendCongratulationEmail(InternetServiceProviderCreationEvent event) {
+    public void sendCongratulationEmail(InternetServiceProviderCreationEvent event) throws MessagingException {
         InternetServiceProvider isp = event.getInternetServiceProvider();
-        SimpleMailMessage email = new SimpleMailMessage();
+        MimeMessageHelper email = new MimeMessageHelper(mailSender.createMimeMessage(), false, UTF_8.name());
         email.setTo(isp.getEmail());
         email.setSubject(subject);
-        email.setText(buildHtmlContent(isp));
-        mailSender.send(email);
+        email.setText(buildHtmlContent(isp), true);
+        mailSender.send(email.getMimeMessage());
     }
 
     String buildHtmlContent(InternetServiceProvider isp) {

@@ -68,6 +68,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-mail'
     compile 'org.thymeleaf:thymeleaf-spring4'
     runtime 'com.h2database:h2'
+    runtime 'org.postgresql:postgresql:9.4.1208.jre7'
     compile 'com.jayway.jsonpath:json-path'
     compile 'org.atteo:evo-inflector:1.2.1'
     compile 'com.fasterxml.jackson.datatype:jackson-datatype-jdk7'

@@ -4,26 +4,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="https://www.ripe.net/favicon.ico">
 
     <title>Regional Internet Registry service</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
 
     <!-- inject:css -->
+    <link href="app.css" rel="stylesheet">
     <!-- endinject -->
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -39,6 +33,7 @@
 
     <div class="row marketing">
         <table class="table table-striped" id="index-table">
+            <thead>
             <tr>
                 <th>ID</th>
                 <th>Company Name</th>
@@ -46,28 +41,8 @@
                 <th>Email</th>
                 <th></th>
             </tr>
-            <tr>
-                <td id="index-id-1">1</td>
-                <td id="index-companyName-1"><a href="#" data-toggle="modal" data-target="#view">IN PROGRESS</a></td>
-                <td id="index-website-1"><a href="http://example.com">http://example.com</a></td>
-                <td id="index-email-1"><a href="mailto:mail@to.me">mail@to.me</a></td>
-                <td>
-                    <button id="index-remove-1" class="btn btn-xs btn-danger">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td id="index-id-2">2</td>
-                <td id="index-companyName-2"><a href="#" data-toggle="modal" data-target="#view">IN PROGRESS</a></td>
-                <td id="index-website-2"><a href="http://example.com">http://example.com</a></td>
-                <td id="index-email-2"><a href="mailto:mail@to.me">mail@to.me</a></td>
-                <td>
-                    <button id="index-remove-2" class="btn btn-xs btn-danger">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </td>
-            </tr>
+            </thead>
+            <tbody></tbody>
         </table>
         <button id="index-create" class="btn btn-success pull-right" data-toggle="modal" data-target="#add">
             <span class="glyphicon glyphicon-plus"></span>
@@ -85,28 +60,30 @@
                     </button>
                     <h4 class="modal-title" id="addModalLabel">Add new</h4>
                 </div>
-                <div class="modal-body">
-                    <form>
+                <form id="add-form" data-toggle="validator" role="form">
+                    <div class="modal-body">
                         <div class="form-group">
                             <label for="edit-companyName">Company Name</label>
                             <input type="text" class="form-control" id="edit-companyName"
-                                   placeholder="Company Name">
+                                   placeholder="Company Name" required>
                         </div>
                         <div class="form-group">
                             <label for="edit-website">Website</label>
-                            <input type="text" class="form-control" id="edit-website"
-                                   placeholder="Website">
+                            <input type="url" class="form-control" id="edit-website"
+                                   placeholder="Website" required="required">
                         </div>
                         <div class="form-group">
                             <label for="edit-email">Email</label>
-                            <input type="email" class="form-control" id="edit-email" placeholder="Email">
+                            <input type="email" class="form-control" id="edit-email" placeholder="Email" required>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button id="edit-close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button id="edit-save" type="button" class="btn btn-primary">Save</button>
-                </div>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="edit-close" type="button" class="btn btn-default" data-dismiss="modal">Close
+                        </button>
+                        <button type="submit" id="edit-save" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -121,7 +98,7 @@
                     <h4 class="modal-title" id="viewModalLabel">View</h4>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="view-form">
                         <div class="form-group">
                             <label for="view-id">ID</label>
                             <input type="text" class="form-control" id="view-id"
@@ -151,14 +128,12 @@
     </div>
 </div>
 
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.9.0/validator.min.js"></script>
 <!-- inject:js -->
+<script src="app.js"></script>
 <!-- endinject -->
-
 </body>
 </html>

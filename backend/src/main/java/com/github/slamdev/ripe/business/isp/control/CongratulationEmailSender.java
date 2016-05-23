@@ -10,7 +10,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.context.Context;
-import org.thymeleaf.exceptions.TemplateInputException;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 
 @Component
@@ -37,10 +36,6 @@ public class CongratulationEmailSender {
     String buildHtmlContent(InternetServiceProvider isp) {
         Context context = new Context();
         context.setVariable("name", isp.getCompanyName());
-        try {
-            return templateEngine.process("congratulation", context);
-        } catch (TemplateInputException ignored) {
-            return "";
-        }
+        return templateEngine.process("congratulation", context);
     }
 }

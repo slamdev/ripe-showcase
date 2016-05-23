@@ -6,6 +6,7 @@ import com.github.slamdev.ripe.business.isp.page.CreateIspPage;
 import com.github.slamdev.ripe.business.isp.page.IndexPage;
 import com.github.slamdev.ripe.business.isp.page.ViewIspPage;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -47,6 +48,7 @@ public class IspTest {
     }
 
     @Test
+    @Ignore
     public void should_crud_isp() {
         page.assertThat().hasNoIsps();
         CreateIspPage createIspPage = page.goToCreateIspPage();

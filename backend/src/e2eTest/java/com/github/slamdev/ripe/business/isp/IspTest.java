@@ -5,7 +5,6 @@ import com.github.slamdev.ripe.business.isp.entity.InternetServiceProvider;
 import com.github.slamdev.ripe.business.isp.page.CreateIspPage;
 import com.github.slamdev.ripe.business.isp.page.IndexPage;
 import com.github.slamdev.ripe.business.isp.page.ViewIspPage;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,32 +46,18 @@ public class IspTest {
         page = initElements(driver, IndexPage.class);
     }
 
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
-
     @Test
-    public void should_add_new_isp() {
-        page.assertThat().hasEmptyTable();
+    public void should_crud_isp() {
+        page.assertThat().hasNoIsps();
         CreateIspPage createIspPage = page.goToCreateIspPage();
         createIspPage.assertThat().hasEmptyIspFields();
         createIspPage.fillIspFields(ISP);
         createIspPage.saveIsp();
         page.assertThat().hasIsp(ISP);
-    }
-
-    @Test
-    public void should_view_created_isp() {
-        page.assertThat().hasIsp(ISP);
         ViewIspPage viewIspPage = page.goToViewIspPage(ISP);
         viewIspPage.assertThat().hasIspFields(ISP);
-    }
-
-    @Test
-    public void should_delete_created_isp() {
-        page.assertThat().hasIsp(ISP);
+        viewIspPage.close();
         page.removeIsp(ISP);
-        page.assertThat().hasEmptyTable();
+        page.assertThat().hasNoIsps();
     }
 }

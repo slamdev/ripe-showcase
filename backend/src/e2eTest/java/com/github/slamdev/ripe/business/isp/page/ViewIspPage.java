@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.github.slamdev.ripe.WebDriverUtil.waitOneSecond;
+
 @RequiredArgsConstructor
 @Getter
 public class ViewIspPage {
@@ -29,5 +31,10 @@ public class ViewIspPage {
 
     public ViewIspPageAssert assertThat() {
         return new ViewIspPageAssert(this);
+    }
+
+    public void close() {
+        closeButton.click();
+        waitOneSecond();
     }
 }

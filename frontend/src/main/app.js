@@ -2,7 +2,7 @@
 
 $(function () {
 
-    var endpointUrl = "http://localhost:8080/api/isp";
+    var endpointUrl = "api/isp";
     var table = $("#index-table");
     var addForm = $("#add-form");
     var viewForm = $("#view-form");
@@ -105,8 +105,8 @@ $(function () {
             text: isp.id
         }).appendTo(row);
         $("<td />", {
-            id: "index-companyName-" + isp.id,
             html: $("<a />", {
+                id: "index-companyName-" + isp.id,
                 href: "#",
                 "data-toggle": "modal",
                 "data-target": "#view",

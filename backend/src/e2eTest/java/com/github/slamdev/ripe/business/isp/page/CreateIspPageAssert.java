@@ -11,17 +11,17 @@ public class CreateIspPageAssert extends AbstractAssert<CreateIspPageAssert, Cre
     }
 
     public CreateIspPageAssert hasCompanyName(String text) {
-        assertThat(actual.getCompanyName()).isEqualTo(text);
+        assertThat(actual.getCompanyName().getAttribute("value")).isEqualTo(text);
         return this;
     }
 
     public CreateIspPageAssert hasWebsite(String text) {
-        assertThat(actual.getWebsite()).isEqualTo(text);
+        assertThat(actual.getWebsite().getAttribute("value")).isEqualTo(text);
         return this;
     }
 
     public CreateIspPageAssert hasEmail(String text) {
-        assertThat(actual.getEmail()).isEqualTo(text);
+        assertThat(actual.getEmail().getAttribute("value")).isEqualTo(text);
         return this;
     }
 

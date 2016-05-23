@@ -3,7 +3,6 @@ package com.github.slamdev.ripe.business.isp.page;
 import com.github.slamdev.ripe.business.isp.entity.InternetServiceProvider;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,8 +10,10 @@ import org.openqa.selenium.support.FindBy;
 import java.net.URI;
 import java.util.List;
 
+import static com.github.slamdev.ripe.WebDriverUtil.waitOneSecond;
 import static java.util.stream.Collectors.toList;
 import static org.openqa.selenium.By.id;
+import static org.openqa.selenium.By.xpath;
 import static org.openqa.selenium.support.PageFactory.initElements;
 
 @RequiredArgsConstructor
@@ -33,11 +34,12 @@ public class IndexPage {
 
     public CreateIspPage goToCreateIspPage() {
         createButton.click();
+        waitOneSecond();
         return initElements(driver, CreateIspPage.class);
     }
 
     public List<InternetServiceProvider> getIsps() {
-        List<WebElement> elements = driver.findElements(By.xpath("(//td[starts-with(@id,'index-id-')])"));
+        List<WebElement> elements = driver.findElements(xpath("(//td[starts-with(@id,'index-id-')])"));
         return elements.stream().map(WebElement::getText).map(this::getIspById).collect(toList());
     }
 
@@ -55,13 +57,26 @@ public class IndexPage {
     }
 
     public ViewIspPage goToViewIspPage(InternetServiceProvider isp) {
+        if (isp.getId() == null) {
+            updateIspId(isp);
+        }
         WebElement company = driver.findElement(id("index-companyName-" + isp.getId()));
         company.click();
+        waitOneSecond();
         return initElements(driver, ViewIspPage.class);
+    }
+
+    private void updateIspId(InternetServiceProvider isp) {
+        getIsps().stream()
+                .filter(e -> e.getCompanyName().equals(isp.getCompanyName()))
+                .filter(e -> e.getEmail().equals(isp.getEmail()))
+                .filter(e -> e.getWebsite().equals(isp.getWebsite()))
+                .findAny().ifPresent(e -> isp.setId(e.getId()));
     }
 
     public void removeIsp(InternetServiceProvider isp) {
         WebElement removeButton = driver.findElement(id("index-remove-" + isp.getId()));
         removeButton.click();
+        waitOneSecond();
     }
 }

@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.github.slamdev.ripe.WebDriverUtil.waitOneSecond;
+
 @RequiredArgsConstructor
 @Getter
 public class CreateIspPage {
@@ -35,10 +37,12 @@ public class CreateIspPage {
     public void fillIspFields(InternetServiceProvider isp) {
         companyName.sendKeys(isp.getCompanyName());
         website.sendKeys(isp.getWebsite().toASCIIString());
-        website.sendKeys(isp.getEmail());
+        email.sendKeys(isp.getEmail());
+        waitOneSecond();
     }
 
     public void saveIsp() {
         saveButton.click();
+        waitOneSecond();
     }
 }

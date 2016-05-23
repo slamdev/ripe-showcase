@@ -16,6 +16,7 @@
             <Bug code="USBR"/>
             <Bug code="CFS"/>
             <Bug code="FCBL"/>
+            <Bug code="MDM"/>
         </Or>
     </Match>
 </FindBugsFilter>

@@ -10,10 +10,6 @@ cache:
   - "$HOME/.m2"
 branches:
   only: master
-before_deploy:
-  - find . ! -name 'backend.jar' -type f -delete
-  - mv backend/build/libs/backend.jar .
-  - ls -la
 deploy:
   provider: heroku
   skip_cleanup: true

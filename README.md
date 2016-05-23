@@ -1,31 +1,5 @@
 # Ripe Showcase
 
-## Task description
-
-### Your task
-* Create a microservice as described bellow and send us the source code of your solution.
-* The solution should be of 'production level quality'.
-* Send your solution to swe-assessment@ripe.net, latest two working days before your interview.
-* Present your solution on the day of the interview.
-
-### Instructions
-In this assignment you are asked to create your own Regional Internet Registry (RIR) service, simulating one of the core functions of the RIPE NCC.
-Using your service, Internet Service Providers (ISPs) will be able to register.
-
-### Registration
-Your task is to implement the registration and lookup of new ISPs.
-An ISP can send a registration request to the RIPE NCC. The request will contain information about the ISP. More specifically the company name, the website and the email of the company.
-Your registry service should store this information and acknowledge each successful ISP registration.
-Clients should be able to lookup registered companies.
-
-### Hints
-* You can choose any Java or Scala libraries/frameworks in order to complete your assignment
-* You can include a README in order to provide instructions, notes and/or comments for us
-* Feel free to make your own assumptions that can take you to a working
-* Creating a user-interface is out of scope of this assignment
-
-If you have any questions please send an email to swe-assessment@ripe.net
-
 ## Technologies stack
 * [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * [Gradle 2.13](https://docs.gradle.org/current/userguide/userguide.html) - project build system
@@ -45,6 +19,7 @@ If you have any questions please send an email to swe-assessment@ripe.net
 * Gradle
 * JavaScript Support
 * JUnit
+* Lombok Plugin
 * Spring (all spring plugins)
 
 ### Step-by-step
@@ -55,10 +30,11 @@ If you have any questions please send an email to swe-assessment@ripe.net
 5. In the **Import Project** window leave all default options and press **Finish**
 6. In the **Gradle project data to import** leave all default options and press **OK**
 7. If **Unregistered VCS root detected** warning appears, press **Add root**
-8. Select **View** -> **Tool windows** -> **Gradle** menu item
-9. In the appeared **Gradle projects** window select **Execute gradle task** icon (green circle)
-10. In the appeared **Run Gradle Task** window type **clean build** to the **Command line** input and press **OK**
-11. Wait until gradle download all dependencies and build the project. The first time it could take up to 5 minutes
+8. Enable **annotation processing** in IDEA settings
+9. Select **View** -> **Tool windows** -> **Gradle** menu item
+10. In the appeared **Gradle projects** window select **Execute gradle task** icon (green circle)
+11. In the appeared **Run Gradle Task** window type **clean build** to the **Command line** input and press **OK**
+12. Wait until gradle download all dependencies and build the project. The first time it could take up to 5 minutes
 
 ## Project run
 There are two ways to run project from idea:

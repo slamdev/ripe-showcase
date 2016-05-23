@@ -22,6 +22,10 @@ task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
 }
 
+task stage() {
+    // required by heroku
+}
+
 gradle.addBuildListener(new ReportGeneratingProfileListener() {
     void buildFinished(BuildProfile buildProfile) {
         ProfileReportRenderer renderer = new ProfileReportRenderer()

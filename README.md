@@ -1,4 +1,4 @@
-# Ripe Showcase
+# Ripe Showcase [![Build Status](https://travis-ci.org/slamdev/ripe-showcase.svg?branch=master)](https://travis-ci.org/slamdev/ripe-showcase) [![Heroku](https://heroku-badge.herokuapp.com/?app=ripe-showcase)](https://ripe-showcase.herokuapp.com)
 
 ## Technologies stack
 * [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)

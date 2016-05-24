@@ -10,7 +10,6 @@ task remoteDeploy << {
     ssh.run {
         session(remotes.config) {
             logger.quiet('Stopping previous application')
-            // TODO: find appropriate way to call these commands without sudo
             execute 'if /usr/bin/pgrep java &> /dev/null ; then /usr/bin/sudo /usr/bin/killall -9 java ; fi'
             logger.quiet('Uploading new application')
             put from: file("${jar.archivePath}"), into: requireProperty('SSH_PATH')

@@ -33,6 +33,8 @@
         <exclude name="AbstractClassWithoutAbstractMethod"/>
         <exclude name="AbstractClassWithoutAnyMethod"/>
         <exclude name="AvoidReassigningParameters"/>
+        <exclude name="UseUtilityClass"/>
+        <exclude name="UseVarargs"/>
     </rule>
     <rule ref="rulesets/java/empty.xml"/>
     <rule ref="rulesets/java/finalizers.xml"/>

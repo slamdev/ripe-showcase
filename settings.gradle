@@ -1,4 +1,3 @@
 rootProject.name = 'ripe-showcase'
 include 'backend'
 include 'frontend'
-

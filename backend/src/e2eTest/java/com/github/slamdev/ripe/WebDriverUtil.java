@@ -25,7 +25,7 @@ public final class WebDriverUtil {
 
     public static void waitOneSecond() {
         try {
-            Thread.sleep(500 * 2);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             throw new IllegalStateException(e);
         }
